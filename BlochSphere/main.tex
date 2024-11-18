@@ -1,0 +1,62 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{blochsphere}
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{tikz}
+\usetikzlibrary{positioning,arrows,calc,math,angles,quotes}
+\usepackage{blochsphere}
+\usepackage{braket}
+\usepackage[x11names]{xcolor}
+\usepackage[paperwidth=16in, paperheight=9in, margin=0cm]{geometry} % 16:9 aspect ratio, no margins
+\usepackage{textpos} % For absolute positioning of content
+
+% Define background and text color
+\definecolor{mycolor}{RGB}{27, 27, 27}
+\pagecolor{mycolor}
+\color{white}
+
+\begin{document}
+\pagenumbering{gobble}
+
+% Start positioning the Bloch sphere wherever you like on the page
+\begin{textblock*}{\textwidth}(0cm,0.5cm) % Adjust position (x, y) here
+    \centering
+    \include{blochSphere}
+\end{textblock*}
+
+
+\begin{textblock*}{\textwidth}(0cm,13cm) % Adjust position (x, y) here
+    \centering
+    \Large $i \hbar \frac{\partial}{\partial t} \ket{\psi (t)} = \hat{H} \ket{\psi (t)}$
+    \vspace{10pt}
+
+
+\begin{tikzpicture}
+    % EXP Problems container (outermost rounded rectangle)
+    \fill[gray!100, rounded corners=0.5cm] (-5, -2.5) rectangle (5, 3.5);
+    \node[mycolor] at (-4, 3) {EXP};
+
+    % NP Problems container (rounded rectangle inside EXP)
+    \fill[gray!90, rounded corners=0.4cm] (-3.5, -1.5) rectangle (3, 2.5);
+    \node[mycolor] at (-2.8, 2) {NP};
+
+    % P Problems container (smallest rounded rectangle inside NP)
+    \fill[gray!80, rounded corners=0.3cm] (-1.5, -0.5) rectangle (1.5, 1.5);
+    \node[mycolor] at (0, 0.5) {P};
+
+    % BQP boundary (dashed, closed rounded rectangle overlapping NP and enclosing P)
+    \draw[dashed, rounded corners=0.4cm, thick, white] (-2, -1) rectangle (3, 3);
+    \node[mycolor] at (4, .5) {BQP};
+
+\end{tikzpicture}
+    
+\end{textblock*}
+
+
+
+
+\end{document}

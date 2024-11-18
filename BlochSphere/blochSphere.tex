@@ -1,0 +1,51 @@
+%%%% Change these parameters to change the position of psi, or the size/rotation of the sphere
+\def\rotationSphere{-110}
+\def\radiusSphere{5cm}
+\def\psiLat{45}
+\def\psiLon{45}
+\def\textSize{\large} % Control text size here
+
+\begin{blochsphere}[radius=\radiusSphere, opacity=0.025, rotation=\rotationSphere]
+  \drawBallGrid[style={opacity=.3}]{30}{45}
+  % Draw the sphere...
+  \drawLongitudeCircle[]{\rotationSphere}
+  \drawLatitudeCircle[style={dashed}]{0}
+  
+  % Define the different points on the Bloch sphere
+  \labelLatLon{ket0}{90}{0};
+  \labelLatLon{ket1}{-90}{0};
+  \labelLatLon{ket2}{45}{0};
+  \labelLatLon{ketminus}{0}{180};
+  \labelLatLon{ketplus}{0}{0};
+  \labelLatLon{ketpluspi2}{0}{-90};
+  \labelLatLon{ketplus3pi2}{0}{-270};
+  \labelLatLon{psi}{\psiLat}{-\psiLon};
+  
+  % Draw and label the axes
+  
+  \draw[-latex] (0,0) -- (ket0) node[above, inner sep=.5mm] at (ket0) {\textSize $z \, \ket{1}$};
+  
+  \draw[-latex] node[below, inner sep=1.5mm] at (ket1) {\textSize $-z \, \ket{0}$};
+  
+  \draw[-latex] (0,0) -- (ketplus) node[below left,inner sep=.5mm] at (ketplus) {\textSize $x \, \ket{+}$};
+  
+  \draw[-latex] node[above right,inner sep=.5mm] at (ketminus) {\textSize $-x \, \ket{-}$};
+  
+  \draw[-latex] (0,0) -- (ketpluspi2) node[right,inner sep=3mm] at (ketpluspi2) {\textSize $y \, \ket{+i}$};
+  
+  \draw[-latex] node[left,inner sep=2.5mm] at (ketplus3pi2) {\textSize $-y \, \ket{-i}$};
+  
+  % Draw |psi>
+  \draw[-latex] (0,0) -- (psi) node[above]{\textSize $\ket{\psi}$};
+
+  % Draw the angles
+  \coordinate (origin) at (0,0);
+  {
+    \setDrawingPlane{0}{0}
+    \draw[current plane, dashed] (0,0) -- (-90+\psiLon:{cos(\psiLat)*\radiusSphere}) coordinate (psiProjectedEquat) -- (psi);
+    \pic[current plane, draw, fill=orange!50, fill opacity=.5, text opacity=1, "\textSize $\phi$", angle eccentricity=2.2]{angle=ketplus--origin--psiProjectedEquat};
+  }
+  { \setLongitudinalDrawingPlane{\psiLon}
+    \pic[current plane, draw, fill=orange!50, fill opacity=.5, text opacity=1, "\textSize $\theta$", angle eccentricity=1.5]{angle=psi--origin--ket0};
+  }
+\end{blochsphere}
