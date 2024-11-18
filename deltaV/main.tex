@@ -1,0 +1,54 @@
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{matrix, positioning}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usetikzlibrary{positioning, arrows.meta}
+\usetikzlibrary{calc}
+
+% Define background and text colors
+\definecolor{bgcolor}{RGB}{27, 27, 27}
+\definecolor{textcolor}{RGB}{255, 255, 255}
+
+\pagecolor{bgcolor}
+\color{textcolor}
+\usepackage{textpos}
+
+\usepackage[paperwidth=16in, paperheight=9in, margin=0cm]{geometry}
+
+
+
+\begin{document}
+\pagenumbering{gobble} % No page numbers
+
+
+% \vspace{10pt}
+
+% $E=T+U$\\
+% $E=-\frac{GmM}{\mathbf{|r|}} + \frac{1}{2}m|\mathbf{v}|^2$\\
+% $E=-\frac{GmM}{2\mathbf{|r|}}$
+
+
+% \vspace{20pt}
+
+% $\Delta v = v_e \text{ln} \frac{m_0}{m_f}=I_{\text{sp}} g_0 \text{ln}\frac{m_0}{m_f}$\\
+
+% $m_0=m_f e^{\Delta v / v_e}$
+
+
+
+\begin{textblock*}{\textwidth}(7cm,4cm)
+\include{deltaVmap}
+\end{textblock*}
+
+\begin{textblock*}{\textwidth}(0cm,17.5cm) % Center textblock
+\centering % Center the equations within the block
+\Large 
+$\Delta v = v_e \text{ln} \frac{m_0}{m_f}=I_{\text{sp}} g_0 \text{ln}\frac{m_0}{m_f}$
+
+\vspace{10pt} % Add spacing between equations if needed
+
+$v = \sqrt{\frac{2GM}{r}}$
+\end{textblock*}
+
+\end{document}

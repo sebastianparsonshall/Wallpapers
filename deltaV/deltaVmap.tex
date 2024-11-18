@@ -1,0 +1,52 @@
+\begin{tikzpicture}[
+    dv/.style={-Stealth, thick, font=\small},
+    orbit/.style={dotted, draw=textcolor, thick},
+    transfer/.style={thick},
+    textcolor/.style={font=\small}
+]
+
+% Earth at the center with customizable size
+\node[circle, draw, minimum width=3cm, font=\large, label=below:{}] (earth) {Earth};
+
+% Radius for Earth’s orbit
+\def\earthOrbit{2.5cm}
+
+% Low Earth Orbit (LEO)
+\draw[orbit] (earth) circle [radius=\earthOrbit];
+\node[textcolor] at (0, -\earthOrbit - 0.3cm) {LEO}; % Moved to 270 degrees
+\draw[dv] (earth) -- ++(270:\earthOrbit) node[shift={(0,-0.7)}] {9.3 km/s};
+
+% Arrange planets and moons radially around Earth with custom sizes
+% Each planet/moon positioned at a certain angle with a radius
+
+% Moon with custom size
+\node[circle, draw, minimum width=0.1cm, font=\large, label=below:{}] (moon) at (70:\earthOrbit*3) {Moon};
+\draw[orbit] (moon) circle [radius=1.2cm];
+\node[textcolor] at ([shift={(180+90+30:2cm)}]moon) {Low Lunar Orbit};
+\draw[dv] (moon) -- ++(180+70:1.2cm) node[shift={(0.8,-0.3)}] {1.6 km/s};
+
+% Mars with custom size
+\node[circle, draw, minimum width=1.8cm, font=\large, label=below:{}] (mars) at (170:\earthOrbit*4.5) {Mars};
+\draw[orbit] (mars) circle [radius=1.8cm];
+\node[textcolor] at ([shift={(7:3.05cm)}]mars) {Low Mars Orbit};
+\draw[dv] (mars) -- ++(-10:1.8cm) node[, above right] {3.6 km/s};
+
+% Venus with custom size
+\node[circle, draw, minimum width=3cm, font=\large, label=below:{}] (venus) at (135:\earthOrbit*3.5) {Venus};
+\draw[orbit] (venus) circle [radius=2.2cm];
+\node[textcolor] at ([shift={(-270-135+25:3.4cm)}]venus) {Low Venus Orbit};
+\draw[dv] (venus) -- ++(-270-135:2.2cm) node[right, shift={(0.28,-0.0)}] {7.5 km/s};
+
+% Jupiter with custom size
+\node[circle, draw, minimum width=6cm, font=\large, label=below:{}] (jupiter) at (20:\earthOrbit*6) {Jupiter};
+\draw[orbit] (jupiter) circle [radius=4cm];
+\node[textcolor] at ([shift={(188:5.4cm)}]jupiter) {Low Jupiter Orbit};
+\draw[dv] (jupiter) -- ++(180+20:4cm) node[, above left] {18.5 km/s};
+
+% Orbital Transfer Lines (From Earth's Orbit to Each Planet's Orbit)
+\draw[transfer] ([shift={(70:\earthOrbit)}]earth) -- ([shift={(250:1.2cm)}]moon) node[midway, left] {3.2 km/s};
+\draw[transfer] ([shift={(170:\earthOrbit)}]earth) -- ([shift={(350:1.8cm)}]mars) node[midway, above right] {5.6 km/s};
+\draw[transfer] ([shift={(135:\earthOrbit)}]earth) -- ([shift={(315:2.2cm)}]venus) node[midway, above right] {2.5 km/s};
+\draw[transfer] ([shift={(20:\earthOrbit)}]earth) -- ([shift={(200:4cm)}]jupiter) node[midway, above left] {6.2 km/s};
+
+\end{tikzpicture}
