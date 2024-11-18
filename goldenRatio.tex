@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage{tikz}
+\usetikzlibrary{matrix, positioning}
+\usepackage{xcolor}
+\usepackage{amsmath}
+\usetikzlibrary{positioning, arrows.meta}
+\usetikzlibrary{calc}
+\usepackage{pgfplots}
+
+% Define background and text colors
+\definecolor{bgcolor}{RGB}{27, 27, 27}
+\definecolor{textcolor}{RGB}{255, 255, 255}
+
+\pagecolor{bgcolor}
+\color{textcolor}
+\usepackage{textpos}
+
+\usepackage[paperwidth=16in, paperheight=9in, margin=0cm]{geometry}
+
+
+
+
+\begin{document}
+\pagenumbering{gobble} % No page numbers
+
+
+
+\begin{textblock*}{\textwidth}(0cm,3cm)
+\centering
+
+
+\def\spiral#1{%
+  \pgfmathparse{int(#1)}%
+  \ifnum\pgfmathresult>0
+    \draw [help lines] (0,0) rectangle ++(1,1);
+    \begin{scope}[shift={(1,1)}, rotate=90, scale=1/1.6180339887]
+      \spiral{#1-1}
+    \end{scope}
+    \draw [white] (0,0) arc (270:360:1);
+  \fi
+}
+
+\tikz[scale=14, rotate=90]{\spiral{18}}
+
+\end{textblock*}
+
+\begin{textblock*}{\textwidth}(9cm,3.5cm) % Center textblock
+\centering % Center the equations within the block
+\huge 
+
+$\frac{a}{b} = \frac{a+b}{a}=\varphi$
+\vspace{10pt}
+
+$\varphi = \frac{1+\sqrt{5}}{2}$
+
+\end{textblock*}
+
+\end{document}
